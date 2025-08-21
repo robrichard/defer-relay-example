@@ -1,16 +1,15 @@
 {
-  "name": "grats-relay",
+  "name": "defer-relay",
   "version": "1.0.0",
-  "description": "Grats + Relay Example App",
+  "description": "Defer/Stream with Relay Example App",
   "type": "module",
   "scripts": {
-    "grats": "grats",
     "relay": "relay-compiler",
     "format": "prettier --write .",
     "parcel": "parcel ./client/index.html --open",
     "server": "node --watch --loader ts-node/esm server/server.ts",
-    "build": "grats && relay-compiler && tsc && parcel build ./client/index.html",
-    "start": "concurrently --prefix-colors yellow,blue,magenta,cyan -n server,client,relay,grats \"npm run server\" \"npm run parcel\" \"npm run relay -- --watch\" \"npm run grats -- --watch\""
+    "build": "relay-compiler && tsc && parcel build ./client/index.html",
+    "start": "concurrently --prefix-colors yellow,blue,magenta,cyan -n server,client,relay \"npm run server\" \"npm run parcel\" \"npm run relay -- --watch\""
   },
   "keywords": [],
   "author": "",
@@ -24,8 +23,6 @@
     "@types/relay-runtime": "^18.2.5",
     "babel-plugin-relay": "^16.1.0",
     "concurrently": "^8.2.2",
-    "grats": "^0.0.32",
-    "grats-ts-plugin": "^0.0.2",
     "parcel": "^2.11.0",
     "prettier": "^3.2.5",
     "process": "^0.11.10",
@@ -34,12 +31,17 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "graphql": "^16.8.1",
-    "graphql-yoga": "^5.1.1",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "graphql": "^17.0.0-alpha.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-relay": "^18.2.0",
     "relay-runtime": "^18.2.0"
+  },
+  "resolutions": {
+    "graphql": "^17.0.0-alpha.9"
   },
   "prettier": {}
 }
