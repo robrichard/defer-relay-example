@@ -9,6 +9,19 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+
+function writePartialResult(res: any, result: any) {
+  const json = JSON.stringify(result);
+  const chunk = Buffer.from(json, "utf8");
+  const data = ["Content-Type: application/json; charset=utf-8", "", chunk];
+  if (result.hasNext === true) {
+    data.push("---\r\n");
+  } else {
+    data.push("-----\r\n");
+  }
+  res.write(data.join("\r\n"));
+}
+
 app.post("/graphql", async (req: any, res: any) => {
   const query = req.body.query;
   const variables = req.body.variables;
@@ -23,8 +36,18 @@ app.post("/graphql", async (req: any, res: any) => {
     contextValue: context,
     rootValue,
   });
-  console.log(result);
-  res.json(result);
+  if ("initialResult" in result) {
+    res.setHeader("Content-Type", 'multipart/mixed; boundary="-"');
+    res.write("\r\n---\r\n");
+    writePartialResult(res, result.initialResult);
+
+    for await (const subsequentResult of result.subsequentResults) {
+      writePartialResult(res, subsequentResult);
+    }
+    res.end();
+  } else {
+    res.json(result);
+  }
 });
 
 app.listen(4000, () => {
