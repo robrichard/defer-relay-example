@@ -13,6 +13,7 @@ import { type App_Query$key } from "./__generated__/App_Query.graphql.js";
 import { RelayEnvironmentProvider } from "react-relay";
 import { Environment, Network } from "relay-runtime";
 import { Suspense } from "react";
+import { fetchGraphQL } from "./fetchGraphQL.js";
 
 function BlogPosts({ query: queryRef }: { query: App_Query$key }) {
   const query = useFragment(
@@ -51,21 +52,13 @@ function App() {
     <div>
       <h1>Welcome to Grats + Relay</h1>
       Server says: "{data.greeting}"
-      <BlogPosts query={data} />
+      <div>
+        <Suspense fallback={"Loading blog posts..."}>
+          <BlogPosts query={data} />
+        </Suspense>
+      </div>
     </div>
   );
-}
-
-async function fetchGraphQL(
-  request: RequestParameters,
-  variables: Variables,
-): Promise<GraphQLResponse> {
-  const response = await fetch("http://localhost:4000/graphql", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query: request.text, variables: variables }),
-  });
-  return await response.json();
 }
 
 const environment = new Environment({

@@ -30,7 +30,8 @@ export function getSchema(): GraphQLSchema {
                 blogPosts: {
                     name: "blogPosts",
                     type: new GraphQLList(new GraphQLNonNull(BlogPostType)),
-                    resolve() {
+                    async resolve() {
+                        await new Promise(resolve => setTimeout(resolve, 5000));
                         return [
                             {
                               id: "1",
