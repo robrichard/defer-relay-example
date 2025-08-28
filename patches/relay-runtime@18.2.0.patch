@@ -1,0 +1,35 @@
+diff --git a/lib/store/OperationExecutor.js b/lib/store/OperationExecutor.js
+index b9e12a54253154a55e9373ef306947f1c96ba6c8..cf181f98ebc4c417a216d14bfb07d126e78944e5 100644
+--- a/lib/store/OperationExecutor.js
++++ b/lib/store/OperationExecutor.js
+@@ -803,7 +803,8 @@ var Executor = /*#__PURE__*/function () {
+       getDataID: this._getDataID,
+       path: placeholder.path,
+       treatMissingFieldsAsNull: this._treatMissingFieldsAsNull,
+-      shouldProcessClientComponents: this._shouldProcessClientComponents
++      shouldProcessClientComponents: this._shouldProcessClientComponents,
++      ignoreMissingFields: true
+     });
+     this._getPublishQueueAndSaveActor().commitPayload(this._operation, relayPayload);
+     var parentEntry = this._source.get(parentID);
+diff --git a/lib/store/RelayResponseNormalizer.js b/lib/store/RelayResponseNormalizer.js
+index d5174f6f5930866ae8b447f2f37962c4e4b8885c..d63a50f09f48640d8d08752533e8b8dc47e94494 100644
+--- a/lib/store/RelayResponseNormalizer.js
++++ b/lib/store/RelayResponseNormalizer.js
+@@ -49,6 +49,7 @@ var RelayResponseNormalizer = /*#__PURE__*/function () {
+     this._incrementalPlaceholders = [];
+     this._isClientExtension = false;
+     this._isUnmatchedAbstractType = false;
++    this._ignoreMissingFields = options.ignoreMissingFields;
+     this._followupPayloads = [];
+     this._path = options.path ? (0, _toConsumableArray2["default"])(options.path) : [];
+     this._recordSource = recordSource;
+@@ -291,7 +292,7 @@ var RelayResponseNormalizer = /*#__PURE__*/function () {
+     var fieldValue = data[responseKey];
+     if (fieldValue == null || RelayFeatureFlags.ENABLE_NONCOMPLIANT_ERROR_HANDLING_ON_LISTS && Array.isArray(fieldValue) && fieldValue.length === 0) {
+       if (fieldValue === undefined) {
+-        var isOptionalField = this._isClientExtension || this._isUnmatchedAbstractType;
++        var isOptionalField = this._isClientExtension || this._isUnmatchedAbstractType || this._ignoreMissingFields;
+         if (isOptionalField) {
+           return;
+         } else if (!this._treatMissingFieldsAsNull) {

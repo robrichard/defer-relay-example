@@ -7,6 +7,11 @@ settings:
 overrides:
   graphql: ^17.0.0-alpha.9
 
+patchedDependencies:
+  relay-runtime@18.2.0:
+    hash: xq5bik3qzvjr3clulj3pqoo6km
+    path: patches/relay-runtime@18.2.0.patch
+
 importers:
 
   .:
@@ -37,7 +42,7 @@ importers:
         version: 18.2.0(react@18.3.1)
       relay-runtime:
         specifier: ^18.2.0
-        version: 18.2.0
+        version: 18.2.0(patch_hash=xq5bik3qzvjr3clulj3pqoo6km)
     devDependencies:
       '@babel/core':
         specifier: ^7.12.0
@@ -3385,7 +3390,7 @@ snapshots:
       invariant: 2.2.4
       nullthrows: 1.1.1
       react: 18.3.1
-      relay-runtime: 18.2.0
+      relay-runtime: 18.2.0(patch_hash=xq5bik3qzvjr3clulj3pqoo6km)
     transitivePeerDependencies:
       - encoding
 
@@ -3397,7 +3402,7 @@ snapshots:
 
   relay-compiler@18.2.0: {}
 
-  relay-runtime@18.2.0:
+  relay-runtime@18.2.0(patch_hash=xq5bik3qzvjr3clulj3pqoo6km):
     dependencies:
       '@babel/runtime': 7.27.0
       fbjs: 3.0.5

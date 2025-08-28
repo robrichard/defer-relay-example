@@ -44,5 +44,10 @@
   "resolutions": {
     "graphql": "^17.0.0-alpha.9"
   },
-  "prettier": {}
+  "prettier": {},
+  "pnpm": {
+    "patchedDependencies": {
+      "relay-runtime@18.2.0": "patches/relay-runtime@18.2.0.patch"
+    }
+  }
 }
