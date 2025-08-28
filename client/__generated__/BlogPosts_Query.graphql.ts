@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<db9af1ab6416926d487d4b1fcf5d2c0b>>
+ * @generated SignedSource<<d5b625f1b1d859989952207213d3f3e3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,7 @@ export type BlogPosts_Query$data = {
     readonly id: string | null | undefined;
     readonly title: string | null | undefined;
   }> | null | undefined;
+  readonly greeting: string | null | undefined;
   readonly " $fragmentType": "BlogPosts_Query";
 };
 export type BlogPosts_Query$key = {
@@ -24,7 +25,12 @@ export type BlogPosts_Query$key = {
 };
 
 const node: ReaderFragment = {
-  "argumentDefinitions": [],
+  "argumentDefinitions": [
+    {
+      "kind": "RootArgument",
+      "name": "name"
+    }
+  ],
   "kind": "Fragment",
   "metadata": null,
   "name": "BlogPosts_Query",
@@ -60,12 +66,25 @@ const node: ReaderFragment = {
         }
       ],
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "name",
+          "variableName": "name"
+        }
+      ],
+      "kind": "ScalarField",
+      "name": "greeting",
+      "storageKey": null
     }
   ],
   "type": "Query",
   "abstractKey": null
 };
 
-(node as any).hash = "d47c1ae483bd55c4f0edff11a5d3930b";
+(node as any).hash = "b90a68b0cb5d32e2209b8153c4f16bc6";
 
 export default node;

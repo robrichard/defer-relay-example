@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7b981edabcf77974779aae3a7002763a>>
+ * @generated SignedSource<<cc76ea74ca9dc156f6291914a5aac6d9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type AppQuery$variables = {
 };
 export type AppQuery$data = {
   readonly greeting: string | null | undefined;
-  readonly " $fragmentSpreads": FragmentRefs<"App_Query">;
+  readonly " $fragmentSpreads": FragmentRefs<"BlogPosts_Query">;
 };
 export type AppQuery = {
   response: AppQuery$data;
@@ -59,7 +59,7 @@ return {
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "App_Query"
+            "name": "BlogPosts_Query"
           }
         ]
       }
@@ -77,7 +77,7 @@ return {
       {
         "if": null,
         "kind": "Defer",
-        "label": "AppQuery$defer$App_Query",
+        "label": "AppQuery$defer$BlogPosts_Query",
         "selections": [
           {
             "alias": null,
@@ -110,22 +110,23 @@ return {
               }
             ],
             "storageKey": null
-          }
+          },
+          (v1/*: any*/)
         ]
       }
     ]
   },
   "params": {
-    "cacheID": "4638034e4b47666856ac5c76e7e098f7",
+    "cacheID": "dabe694505a94cd55e5a8723e2331881",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery(\n  $name: String!\n) {\n  greeting(name: $name)\n  ...App_Query @defer(label: \"AppQuery$defer$App_Query\")\n}\n\nfragment App_Query on Query {\n  blogPosts {\n    id\n    title\n    content\n  }\n}\n"
+    "text": "query AppQuery(\n  $name: String!\n) {\n  greeting(name: $name)\n  ...BlogPosts_Query @defer(label: \"AppQuery$defer$BlogPosts_Query\")\n}\n\nfragment BlogPosts_Query on Query {\n  blogPosts {\n    id\n    title\n    content\n  }\n  greeting(name: $name)\n}\n"
   }
 };
 })();
 
-(node as any).hash = "aeebb5dd63a84b366067167b947c5ed6";
+(node as any).hash = "037dfde45548e01840afac74b2e447cc";
 
 export default node;
