@@ -1,4 +1,2 @@
 pnpm-lock.yaml
 **/__generated__/*
-server/schema.ts
-server/schema.graphql

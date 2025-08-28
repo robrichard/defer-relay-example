@@ -96,16 +96,31 @@ class RelayIncrementalDeliveryTransformer {
         }
         for (const completed of result.completed || []) {
           const pendingPart = this.pendingParts.get(completed.id);
+          let dataTreeObject = this.dataTree;
+          for (const pathSegment of pendingPart.path) {
+            dataTreeObject = dataTreeObject[pathSegment];
+          }
           if (pendingPart) {
-            this.next({
-              data: pendingPart.data,
-              path: pendingPart.path,
-              label: pendingPart.label,
-              extensions: {
-                ...result.extensions,
-                is_final: !result.hasNext,
-              },
-            });
+            if (Array.isArray(dataTreeObject)) {
+              // don't send any data for completed stream lists
+              this.next({
+                data: null,
+                extensions: {
+                  ...result.extensions,
+                  is_final: !result.hasNext,
+                },
+              });
+            } else {
+              this.next({
+                data: pendingPart.data,
+                path: pendingPart.path,
+                label: pendingPart.label,
+                extensions: {
+                  ...result.extensions,
+                  is_final: !result.hasNext,
+                },
+              });
+            }
           }
         }
       }
@@ -132,8 +147,14 @@ export function fetchGraphQL(request: RequestParameters, variables: Variables) {
       onNext: (parts) => {
         transformer.onNext(parts);
       },
-      onError: (err) => sink.error(err),
-      onComplete: () => sink.complete(),
+      onError: (err) => {
+        console.log("onError", err);
+        sink.error(err);
+      },
+      onComplete: () => {
+        console.log("onComplete");
+        sink.complete();
+      },
     });
   });
 }

@@ -20,7 +20,7 @@ function App() {
     graphql`
       query AppQuery($name: String!) @throwOnFieldError {
         greeting(name: $name)
-        ...BlogPosts_Query @defer
+        ...BlogPosts_Query
       }
     `,
     { name: "Grats and Relay" },

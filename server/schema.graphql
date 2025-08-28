@@ -30,6 +30,6 @@ type BlogPost {
 }
 
 type Query {
-  blogPosts: [BlogPost!]
+  blogPosts(delay: Int = 0): [BlogPost!]
   greeting(name: String!): String
 }

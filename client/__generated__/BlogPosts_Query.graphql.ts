@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d5b625f1b1d859989952207213d3f3e3>>
+ * @generated SignedSource<<72afaedb129d27ed549517247b5b2065>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -36,36 +36,47 @@ const node: ReaderFragment = {
   "name": "BlogPosts_Query",
   "selections": [
     {
-      "alias": null,
-      "args": null,
-      "concreteType": "BlogPost",
-      "kind": "LinkedField",
-      "name": "blogPosts",
-      "plural": true,
+      "kind": "Stream",
       "selections": [
         {
           "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "id",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "title",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "content",
-          "storageKey": null
+          "args": [
+            {
+              "kind": "Literal",
+              "name": "delay",
+              "value": 1000
+            }
+          ],
+          "concreteType": "BlogPost",
+          "kind": "LinkedField",
+          "name": "blogPosts",
+          "plural": true,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "id",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "title",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "content",
+              "storageKey": null
+            }
+          ],
+          "storageKey": "blogPosts(delay:1000)"
         }
-      ],
-      "storageKey": null
+      ]
     },
     {
       "alias": null,
@@ -85,6 +96,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "b90a68b0cb5d32e2209b8153c4f16bc6";
+(node as any).hash = "c178a782ed7904e831419bd21c0bd495";
 
 export default node;

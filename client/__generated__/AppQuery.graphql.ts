@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cc76ea74ca9dc156f6291914a5aac6d9>>
+ * @generated SignedSource<<b0622b4c8ae7fe6ac79c7e2e16373b2b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -54,14 +54,9 @@ return {
     "selections": [
       (v1/*: any*/),
       {
-        "kind": "Defer",
-        "selections": [
-          {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "BlogPosts_Query"
-          }
-        ]
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "BlogPosts_Query"
       }
     ],
     "type": "Query",
@@ -76,12 +71,18 @@ return {
       (v1/*: any*/),
       {
         "if": null,
-        "kind": "Defer",
-        "label": "AppQuery$defer$BlogPosts_Query",
+        "kind": "Stream",
+        "label": "BlogPosts_Query$stream$blogPosts_2F37J5",
         "selections": [
           {
             "alias": null,
-            "args": null,
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "delay",
+                "value": 1000
+              }
+            ],
             "concreteType": "BlogPost",
             "kind": "LinkedField",
             "name": "blogPosts",
@@ -109,24 +110,23 @@ return {
                 "storageKey": null
               }
             ],
-            "storageKey": null
-          },
-          (v1/*: any*/)
+            "storageKey": "blogPosts(delay:1000)"
+          }
         ]
       }
     ]
   },
   "params": {
-    "cacheID": "dabe694505a94cd55e5a8723e2331881",
+    "cacheID": "cc73c67101ada107eb081249c4f657d7",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery(\n  $name: String!\n) {\n  greeting(name: $name)\n  ...BlogPosts_Query @defer(label: \"AppQuery$defer$BlogPosts_Query\")\n}\n\nfragment BlogPosts_Query on Query {\n  blogPosts {\n    id\n    title\n    content\n  }\n  greeting(name: $name)\n}\n"
+    "text": "query AppQuery(\n  $name: String!\n) {\n  greeting(name: $name)\n  ...BlogPosts_Query\n}\n\nfragment BlogPosts_Query on Query {\n  blogPosts(delay: 1000) @stream(label: \"BlogPosts_Query$stream$blogPosts_2F37J5\", initialCount: 1) {\n    id\n    title\n    content\n  }\n  greeting(name: $name)\n}\n"
   }
 };
 })();
 
-(node as any).hash = "037dfde45548e01840afac74b2e447cc";
+(node as any).hash = "e9d01df178f43e441560525c4ffa5230";
 
 export default node;
