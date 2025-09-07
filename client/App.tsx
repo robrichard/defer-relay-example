@@ -14,6 +14,7 @@ import { Environment, Network } from "relay-runtime";
 import { Suspense } from "react";
 import { fetchGraphQL } from "./fetchGraphQL.js";
 import { BlogPosts } from "./BlogPosts.js";
+import { Shimmer } from "./Shimmer.js";
 
 function App() {
   const data = useLazyLoadQuery<AppQuery>(
@@ -25,17 +26,7 @@ function App() {
     `,
     { name: "Grats and Relay" },
   );
-  return (
-    <div>
-      <h1>Welcome to Grats + Relay</h1>
-      Server says: "{data.greeting}"
-      <div>
-        <Suspense fallback={"Loading blog posts..."}>
-          <BlogPosts query={data} />
-        </Suspense>
-      </div>
-    </div>
-  );
+  return <BlogPosts query={data} />;
 }
 
 const environment = new Environment({
@@ -45,8 +36,11 @@ const environment = new Environment({
 
 createRoot(document.getElementById("app")!).render(
   <RelayEnvironmentProvider environment={environment}>
-    <Suspense fallback={"Loading..."}>
-      <App />
-    </Suspense>
+    <div className="app">
+      <h1>Relay Example with @defer and @stream</h1>
+      <Suspense fallback={<Shimmer />}>
+        <App />
+      </Suspense>
+    </div>
   </RelayEnvironmentProvider>,
 );

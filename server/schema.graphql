@@ -24,12 +24,14 @@ directive @stream(
 ) on FIELD
 
 type BlogPost {
-  content: String
+  content: [String]
   id: String
   title: String
+  numberOfComments: Int
 }
 
 type Query {
+  numberOfBlogPosts: Int
   blogPosts(delay: Int = 0): [BlogPost!]
   greeting(name: String!): String
 }

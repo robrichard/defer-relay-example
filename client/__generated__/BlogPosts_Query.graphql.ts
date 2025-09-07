@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<72afaedb129d27ed549517247b5b2065>>
+ * @generated SignedSource<<007c2090fd6ba9664123a7be3975dcac>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,11 +12,12 @@ import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type BlogPosts_Query$data = {
   readonly blogPosts: ReadonlyArray<{
-    readonly content: string | null | undefined;
+    readonly content: ReadonlyArray<string | null | undefined> | null | undefined;
     readonly id: string | null | undefined;
     readonly title: string | null | undefined;
+    readonly " $fragmentSpreads": FragmentRefs<"Comments_blogPost">;
   }> | null | undefined;
-  readonly greeting: string | null | undefined;
+  readonly numberOfBlogPosts: number | null | undefined;
   readonly " $fragmentType": "BlogPosts_Query";
 };
 export type BlogPosts_Query$key = {
@@ -25,77 +26,66 @@ export type BlogPosts_Query$key = {
 };
 
 const node: ReaderFragment = {
-  "argumentDefinitions": [
-    {
-      "kind": "RootArgument",
-      "name": "name"
-    }
-  ],
+  "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
   "name": "BlogPosts_Query",
   "selections": [
     {
-      "kind": "Stream",
-      "selections": [
-        {
-          "alias": null,
-          "args": [
-            {
-              "kind": "Literal",
-              "name": "delay",
-              "value": 1000
-            }
-          ],
-          "concreteType": "BlogPost",
-          "kind": "LinkedField",
-          "name": "blogPosts",
-          "plural": true,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "id",
-              "storageKey": null
-            },
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "title",
-              "storageKey": null
-            },
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "content",
-              "storageKey": null
-            }
-          ],
-          "storageKey": "blogPosts(delay:1000)"
-        }
-      ]
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "numberOfBlogPosts",
+      "storageKey": null
     },
     {
       "alias": null,
       "args": [
         {
-          "kind": "Variable",
-          "name": "name",
-          "variableName": "name"
+          "kind": "Literal",
+          "name": "delay",
+          "value": 1000
         }
       ],
-      "kind": "ScalarField",
-      "name": "greeting",
-      "storageKey": null
+      "concreteType": "BlogPost",
+      "kind": "LinkedField",
+      "name": "blogPosts",
+      "plural": true,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "id",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "title",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "content",
+          "storageKey": null
+        },
+        {
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "Comments_blogPost"
+        }
+      ],
+      "storageKey": "blogPosts(delay:1000)"
     }
   ],
   "type": "Query",
   "abstractKey": null
 };
 
-(node as any).hash = "c178a782ed7904e831419bd21c0bd495";
+(node as any).hash = "abc44bc495167ad60bf8292a75e86c7a";
 
 export default node;

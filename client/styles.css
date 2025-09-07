@@ -1,4 +1,57 @@
+h3,
 h2,
 h1 {
   color: lightcoral;
+}
+
+h3 {
+  margin-top: 1.4emem;
+}
+
+.app {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.shimmer {
+   background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+}
+
+@keyframes shimmer {
+   to {
+      background-position-x: 0%
+   }
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.short {
+  width: 100px;
+}
+
+.med {
+  width: 200px;
+}
+
+.content {
+  height: 100px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.comments {
+  float: right;
+  font-style: italic;
+}
+
+.post {
+  padding-top: 10px;
 }

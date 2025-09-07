@@ -1,32 +1,44 @@
 import { graphql, useFragment } from "react-relay";
+import { Suspense } from "react";
+import { Comments } from "./Comments.js";
 import { type BlogPosts_Query$key } from "./__generated__/BlogPosts_Query.graphql.js";
+import { ShimmerPost, ShimmerComments } from "./Shimmer.js";
 
 export function BlogPosts({ query: queryRef }: { query: BlogPosts_Query$key }) {
   const query = useFragment(
     graphql`
       fragment BlogPosts_Query on Query {
-        blogPosts(delay: 1000) @stream(initialCount: 1) {
+        numberOfBlogPosts
+        blogPosts(delay: 1000) {
           id
           title
           content
+          ...Comments_blogPost
         }
-        greeting(name: $name)
       }
     `,
     queryRef,
   );
   const posts = query.blogPosts || [];
   return (
-    <div>
-      <h1>Blog Posts</h1>
+    <div className="blog">
+      <h2>Blog Posts</h2>
       {posts.map((post) => {
         return (
           <div key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.content}</p>
+            <span className="comments">
+              <Suspense fallback={<ShimmerComments />}>
+                <Comments blogPost={post} />
+              </Suspense>
+            </span>
+            <h3>{post.title}</h3>
+            {(post.content || []).map((c, i) => (
+              <p key={i}>{c}</p>
+            ))}
           </div>
         );
       })}
+      {posts.length !== query.numberOfBlogPosts && <ShimmerPost />}
     </div>
   );
 }
