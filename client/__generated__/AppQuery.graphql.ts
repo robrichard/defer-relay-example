@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<181df2822a90e1ef73958cce31c3a0d4>>
+ * @generated SignedSource<<8f812d172d21fde528914545ccaf1678>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -77,59 +77,73 @@ return {
         "storageKey": null
       },
       {
-        "alias": null,
-        "args": [
-          {
-            "kind": "Literal",
-            "name": "delay",
-            "value": 1000
-          }
-        ],
-        "concreteType": "BlogPost",
-        "kind": "LinkedField",
-        "name": "blogPosts",
-        "plural": true,
+        "if": null,
+        "kind": "Stream",
+        "label": "BlogPosts_Query$stream$blogPosts_2F37J5",
         "selections": [
           {
             "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "id",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "title",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "content",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "numberOfComments",
-            "storageKey": null
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "delay",
+                "value": 1000
+              }
+            ],
+            "concreteType": "BlogPost",
+            "kind": "LinkedField",
+            "name": "blogPosts",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "id",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "title",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "content",
+                "storageKey": null
+              },
+              {
+                "if": null,
+                "kind": "Defer",
+                "label": "BlogPosts_Query$defer$Comments_blogPost",
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "numberOfComments",
+                    "storageKey": null
+                  }
+                ]
+              }
+            ],
+            "storageKey": "blogPosts(delay:1000)"
           }
-        ],
-        "storageKey": "blogPosts(delay:1000)"
+        ]
       }
     ]
   },
   "params": {
-    "cacheID": "105d5ac392f286db515dc89c2f4d6d1f",
+    "cacheID": "983b5368705c5a5376ff4a696ef70e28",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery(\n  $name: String!\n) {\n  greeting(name: $name)\n  ...BlogPosts_Query\n}\n\nfragment BlogPosts_Query on Query {\n  numberOfBlogPosts\n  blogPosts(delay: 1000) {\n    id\n    title\n    content\n    ...Comments_blogPost\n  }\n}\n\nfragment Comments_blogPost on BlogPost {\n  numberOfComments\n}\n"
+    "text": "query AppQuery(\n  $name: String!\n) {\n  greeting(name: $name)\n  ...BlogPosts_Query\n}\n\nfragment BlogPosts_Query on Query {\n  numberOfBlogPosts\n  blogPosts(delay: 1000) @stream(label: \"BlogPosts_Query$stream$blogPosts_2F37J5\", initialCount: 2) {\n    id\n    title\n    content\n    ...Comments_blogPost @defer(label: \"BlogPosts_Query$defer$Comments_blogPost\")\n  }\n}\n\nfragment Comments_blogPost on BlogPost {\n  numberOfComments\n}\n"
   }
 };
 })();

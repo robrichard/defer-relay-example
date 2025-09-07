@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<007c2090fd6ba9664123a7be3975dcac>>
+ * @generated SignedSource<<008ea233f059a4f76cb7873f5607dfee>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -39,53 +39,63 @@ const node: ReaderFragment = {
       "storageKey": null
     },
     {
-      "alias": null,
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "delay",
-          "value": 1000
-        }
-      ],
-      "concreteType": "BlogPost",
-      "kind": "LinkedField",
-      "name": "blogPosts",
-      "plural": true,
+      "kind": "Stream",
       "selections": [
         {
           "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "id",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "title",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "content",
-          "storageKey": null
-        },
-        {
-          "args": null,
-          "kind": "FragmentSpread",
-          "name": "Comments_blogPost"
+          "args": [
+            {
+              "kind": "Literal",
+              "name": "delay",
+              "value": 1000
+            }
+          ],
+          "concreteType": "BlogPost",
+          "kind": "LinkedField",
+          "name": "blogPosts",
+          "plural": true,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "id",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "title",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "content",
+              "storageKey": null
+            },
+            {
+              "kind": "Defer",
+              "selections": [
+                {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "Comments_blogPost"
+                }
+              ]
+            }
+          ],
+          "storageKey": "blogPosts(delay:1000)"
         }
-      ],
-      "storageKey": "blogPosts(delay:1000)"
+      ]
     }
   ],
   "type": "Query",
   "abstractKey": null
 };
 
-(node as any).hash = "abc44bc495167ad60bf8292a75e86c7a";
+(node as any).hash = "f90866a9b75ccf4fc96e56c5b0f66acc";
 
 export default node;
