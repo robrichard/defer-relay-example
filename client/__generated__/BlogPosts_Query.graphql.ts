@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<008ea233f059a4f76cb7873f5607dfee>>
+ * @generated SignedSource<<7b32957f2064620f1ab0da906a68652e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -43,13 +43,7 @@ const node: ReaderFragment = {
       "selections": [
         {
           "alias": null,
-          "args": [
-            {
-              "kind": "Literal",
-              "name": "delay",
-              "value": 1000
-            }
-          ],
+          "args": null,
           "concreteType": "BlogPost",
           "kind": "LinkedField",
           "name": "blogPosts",
@@ -87,7 +81,7 @@ const node: ReaderFragment = {
               ]
             }
           ],
-          "storageKey": "blogPosts(delay:1000)"
+          "storageKey": null
         }
       ]
     }
@@ -96,6 +90,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "f90866a9b75ccf4fc96e56c5b0f66acc";
+(node as any).hash = "8e8ad0e8c8af704b478e570e5770bb4c";
 
 export default node;

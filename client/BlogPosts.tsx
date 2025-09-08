@@ -9,7 +9,7 @@ export function BlogPosts({ query: queryRef }: { query: BlogPosts_Query$key }) {
     graphql`
       fragment BlogPosts_Query on Query {
         numberOfBlogPosts
-        blogPosts(delay: 1000) @stream(initialCount: 2) {
+        blogPosts @stream(initialCount: 2) {
           id
           title
           content

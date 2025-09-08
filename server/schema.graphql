@@ -32,6 +32,6 @@ type BlogPost {
 
 type Query {
   numberOfBlogPosts: Int
-  blogPosts(delay: Int = 0): [BlogPost!]
+  blogPosts: [BlogPost!]
   greeting(name: String!): String
 }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8f812d172d21fde528914545ccaf1678>>
+ * @generated SignedSource<<b14d1818b74ef8817b559ed1ceec6981>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -79,17 +79,11 @@ return {
       {
         "if": null,
         "kind": "Stream",
-        "label": "BlogPosts_Query$stream$blogPosts_2F37J5",
+        "label": "BlogPosts_Query$stream$blogPosts",
         "selections": [
           {
             "alias": null,
-            "args": [
-              {
-                "kind": "Literal",
-                "name": "delay",
-                "value": 1000
-              }
-            ],
+            "args": null,
             "concreteType": "BlogPost",
             "kind": "LinkedField",
             "name": "blogPosts",
@@ -131,19 +125,19 @@ return {
                 ]
               }
             ],
-            "storageKey": "blogPosts(delay:1000)"
+            "storageKey": null
           }
         ]
       }
     ]
   },
   "params": {
-    "cacheID": "983b5368705c5a5376ff4a696ef70e28",
+    "cacheID": "09b6611cd10cc7315605a7ad73c88eef",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery(\n  $name: String!\n) {\n  greeting(name: $name)\n  ...BlogPosts_Query\n}\n\nfragment BlogPosts_Query on Query {\n  numberOfBlogPosts\n  blogPosts(delay: 1000) @stream(label: \"BlogPosts_Query$stream$blogPosts_2F37J5\", initialCount: 2) {\n    id\n    title\n    content\n    ...Comments_blogPost @defer(label: \"BlogPosts_Query$defer$Comments_blogPost\")\n  }\n}\n\nfragment Comments_blogPost on BlogPost {\n  numberOfComments\n}\n"
+    "text": "query AppQuery(\n  $name: String!\n) {\n  greeting(name: $name)\n  ...BlogPosts_Query\n}\n\nfragment BlogPosts_Query on Query {\n  numberOfBlogPosts\n  blogPosts @stream(label: \"BlogPosts_Query$stream$blogPosts\", initialCount: 2) {\n    id\n    title\n    content\n    ...Comments_blogPost @defer(label: \"BlogPosts_Query$defer$Comments_blogPost\")\n  }\n}\n\nfragment Comments_blogPost on BlogPost {\n  numberOfComments\n}\n"
   }
 };
 })();

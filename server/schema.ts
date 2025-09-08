@@ -108,16 +108,10 @@ export function getSchema(): GraphQLSchema {
         blogPosts: {
           name: "blogPosts",
           type: new GraphQLList(new GraphQLNonNull(BlogPostType)),
-          args: {
-            delay: {
-              type: GraphQLInt,
-              defaultValue: 0,
-            },
-          },
           resolve: async function* (_source, args) {
             for (const post of blogPosts) {
-              await new Promise((resolve) => setTimeout(resolve, args.delay));
               yield post;
+              await new Promise((resolve) => setTimeout(resolve, 500));
             }
           },
         },
