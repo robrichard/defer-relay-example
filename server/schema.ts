@@ -13,6 +13,12 @@ import {
   specifiedDirectives,
   printSchema,
 } from "graphql";
+import {
+  connectionFromArray,
+  connectionArgs,
+  connectionDefinitions,
+} from "graphql-relay";
+
 import { writeFileSync } from "fs";
 import path from "path";
 
@@ -97,6 +103,10 @@ export function getSchema(): GraphQLSchema {
       };
     },
   });
+
+  const { connectionType: blogPostsConnection } = connectionDefinitions({
+    nodeType: BlogPostType,
+  });
   const QueryType: GraphQLObjectType = new GraphQLObjectType({
     name: "Query",
     fields() {
@@ -104,6 +114,26 @@ export function getSchema(): GraphQLSchema {
         numberOfBlogPosts: {
           type: GraphQLInt,
           resolve: () => blogPosts.length,
+        },
+        blogPostsConnection: {
+          type: blogPostsConnection,
+          args: connectionArgs,
+          resolve: async function (source, args) {
+            const postsConectionResult = connectionFromArray(blogPosts, args);
+            console.log("postsConectionResult", postsConectionResult);
+            return {
+              pageInfo: async () => {
+                await new Promise((resolve) => setTimeout(resolve, 500));
+                return postsConectionResult.pageInfo;
+              },
+              edges: async function* () {
+                for (const edge of postsConectionResult.edges) {
+                  yield edge;
+                  await new Promise((resolve) => setTimeout(resolve, 1000));
+                }
+              },
+            };
+          },
         },
         blogPosts: {
           name: "blogPosts",

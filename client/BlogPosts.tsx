@@ -9,21 +9,31 @@ export function BlogPosts({ query: queryRef }: { query: BlogPosts_Query$key }) {
     graphql`
       fragment BlogPosts_Query on Query {
         numberOfBlogPosts
-        blogPosts @stream(initialCount: 2) {
-          id
-          title
-          content
-          ...Comments_blogPost @defer
+        blogPostsConnection(first: 20)
+          @stream_connection(
+            key: "BlogPosts_blogPostsConnection"
+            initial_count: 0
+          ) {
+          edges {
+            node {
+              id
+              title
+              content
+              ...Comments_blogPost @defer
+            }
+          }
         }
       }
     `,
     queryRef,
   );
-  const posts = query.blogPosts || [];
+  const posts =
+    query?.blogPostsConnection?.edges?.map((edge) => edge?.node) || [];
   return (
     <div className="blog">
       <h2>Blog Posts</h2>
       {posts.map((post) => {
+        if (!post) return null;
         return (
           <div key={post.id}>
             <span className="comments">
