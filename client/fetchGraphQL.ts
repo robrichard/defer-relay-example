@@ -64,6 +64,9 @@ class RelayIncrementalDeliveryTransformer {
               if (incremental.subPath) {
                 for (const pathSegment of incremental.subPath) {
                   dataTreeObject = dataTreeObject[pathSegment];
+                  if (!object[pathSegment]) {
+                    object[pathSegment] = {};
+                  }
                   object = object[pathSegment];
                 }
               }
