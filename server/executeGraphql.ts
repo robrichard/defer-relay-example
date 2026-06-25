@@ -1,4 +1,3 @@
-import { ExecutionResult } from "graphql";
 import {
   validateSchema,
   type GraphQLArgs,

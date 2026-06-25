@@ -137,7 +137,9 @@ export function fetchGraphQL(request: RequestParameters, variables: Variables) {
       console.log("args", ...args);
       sink.next(...args);
     });
-    fetchMultipart("http://localhost:4000/graphql", {
+    fetchMultipart<
+      InitialIncrementalExecutionResult | SubsequentIncrementalExecutionResult
+    >("http://localhost:4000/graphql", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -152,7 +154,7 @@ export function fetchGraphQL(request: RequestParameters, variables: Variables) {
       },
       onError: (err) => {
         console.log("onError", err);
-        sink.error(err);
+        sink.error(err as any);
       },
       onComplete: () => {
         console.log("onComplete");
