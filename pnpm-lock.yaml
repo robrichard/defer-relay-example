@@ -4,13 +4,8 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  graphql: ^17.0.0-alpha.9
-
 patchedDependencies:
-  relay-runtime@18.2.0:
-    hash: xq5bik3qzvjr3clulj3pqoo6km
-    path: patches/relay-runtime@18.2.0.patch
+  relay-runtime@18.2.0: 4ca8f3b219d77c40903ba84a6fb337fa2c350c5e27851b15dc4ae919e8d5b5b6
 
 importers:
 
@@ -45,7 +40,7 @@ importers:
         version: 18.2.0(react@18.3.1)
       relay-runtime:
         specifier: ^18.2.0
-        version: 18.2.0(patch_hash=xq5bik3qzvjr3clulj3pqoo6km)
+        version: 18.2.0(patch_hash=4ca8f3b219d77c40903ba84a6fb337fa2c350c5e27851b15dc4ae919e8d5b5b6)
     devDependencies:
       '@babel/core':
         specifier: ^7.12.0
@@ -523,36 +518,42 @@ packages:
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-arm-musl@2.5.1':
     resolution: {integrity: sha512-6E+m/Mm1t1yhB8X412stiKFG3XykmgdIOqhjWj+VL8oHkKABfu/gjFj8DvLrYVHSBNC+/u5PeNrujiSQ1zwd1Q==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-linux-arm64-glibc@2.5.1':
     resolution: {integrity: sha512-LrGp+f02yU3BN9A+DGuY3v3bmnFUggAITBGriZHUREfNEzZh/GO06FF5u2kx8x+GBEUYfyTGamol4j3m9ANe8w==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-arm64-musl@2.5.1':
     resolution: {integrity: sha512-cFOjABi92pMYRXS7AcQv9/M1YuKRw8SZniCDw0ssQb/noPkRzA+HBDkwmyOJYp5wXcsTrhxO0zq1U11cK9jsFg==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-linux-x64-glibc@2.5.1':
     resolution: {integrity: sha512-GcESn8NZySmfwlTsIur+49yDqSny2IhPeZfXunQi48DMugKeZ7uy1FX83pO0X22sHntJ4Ub+9k34XQCX+oHt2A==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-x64-musl@2.5.1':
     resolution: {integrity: sha512-n0E2EQbatQ3bXhcH2D1XIAANAcTZkQICBPVaxMeaCVBtOpBZpWJuf7LwyWPSBDITb7In8mqQgJ7gH8CILCURXg==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-win32-arm64@2.5.1':
     resolution: {integrity: sha512-RFzklRvmc3PkjKjry3hLF9wD7ppR4AKcWNzH7kXR7GUe0Igb3Nz8fyPwtZCSquGrhU5HhUNDr/mKBqj7tqA2Vw==}
@@ -605,24 +606,28 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-arm64-musl@1.11.22':
     resolution: {integrity: sha512-JhrP/q5VqQl2eJR0xKYIkKTPjgf8CRsAmRnjJA2PtZhfQ543YbYvUqxyXSRyBOxdyX8JwzuAxIPEAlKlT7PPuQ==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@swc/core-linux-x64-gnu@1.11.22':
     resolution: {integrity: sha512-htmAVL+U01gk9GyziVUP0UWYaUQBgrsiP7Ytf6uDffrySyn/FclUS3MDPocNydqYsOpj3OpNKPxkaHK+F+X5fg==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-x64-musl@1.11.22':
     resolution: {integrity: sha512-PL0VHbduWPX+ANoyOzr58jBiL2VnD0xGSFwPy7NRZ1Pr6SNWm4jw3x2u6RjLArGhS5EcWp64BSk9ZxqmTV3FEg==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@swc/core-win32-arm64-msvc@1.11.22':
     resolution: {integrity: sha512-moJvFhhTVGoMeEThtdF7hQog80Q00CS06v5uB+32VRuv+I31+4WPRyGlTWHO+oY4rReNcXut/mlDHPH7p0LdFg==}
@@ -645,6 +650,7 @@ packages:
   '@swc/core@1.11.22':
     resolution: {integrity: sha512-mjPYbqq8XjwqSE0hEPT9CzaJDyxql97LgK4iyvYlwVSQhdN1uK0DBG4eP9PxYzCS2MUGAXB34WFLegdUj5HGpg==}
     engines: {node: '>=10'}
+    deprecated: It has a bug. See https://github.com/swc-project/swc/issues/10413
     peerDependencies:
       '@swc/helpers': '>=0.5.17'
     peerDependenciesMeta:
@@ -931,7 +937,7 @@ packages:
     engines: {node: '>= 0.4'}
 
   ee-first@1.1.1:
-    resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
+    resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
   electron-to-chromium@1.5.141:
     resolution: {integrity: sha512-qS+qH9oqVYc1ooubTiB9l904WVyM6qNYxtOEEGReoZXw3xlqeYdFr5GclNzbkAufWgwWLEPoDi3d9MoRwwIjGw==}
@@ -978,7 +984,7 @@ packages:
     engines: {node: '>=6'}
 
   escape-html@1.0.3:
-    resolution: {integrity: sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=}
+    resolution: {integrity: sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==}
 
   esprima@4.0.1:
     resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}
@@ -986,7 +992,7 @@ packages:
     hasBin: true
 
   etag@1.8.1:
-    resolution: {integrity: sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=}
+    resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
 
   express@5.1.0:
@@ -1057,7 +1063,11 @@ packages:
     resolution: {integrity: sha512-abybva1hmlNt7Y9pMpAzHuFnM2Mme/a2Usd8S4X27fNteLGRAECMYfhmsrpZFvGn3BhmBZugMXYW/Mesv3P1Kw==}
     engines: {node: ^12.20.0 || ^14.15.0 || >= 15.9.0}
     peerDependencies:
-      graphql: ^17.0.0-alpha.9
+      graphql: ^16.2.0
+
+  graphql@15.3.0:
+    resolution: {integrity: sha512-GTCJtzJmkFLWRfFJuoo9RWWa/FfamUHgiFosxi/X1Ani4AVWbeyBenZTNX6dM+7WSbbFfTo/25eh0LLkwHMw2w==}
+    engines: {node: '>= 10.x'}
 
   graphql@17.0.0-alpha.9:
     resolution: {integrity: sha512-jVK1BsvX5pUIEpRDlEgeKJr80GAxl3B8ISsFDjXHtl2xAxMXVGTEFF4Q4R8NH0Gw7yMwcHDndkNjoNT5CbwHKA==}
@@ -1225,24 +1235,28 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-arm64-musl@1.29.3:
     resolution: {integrity: sha512-dxakOk66pf7KLS7VRYFO7B8WOJLecE5OPL2YOk52eriFd/yeyxt2Km5H0BjLfElokIaR+qWi33gB8MQLrdAY3A==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-linux-x64-gnu@1.29.3:
     resolution: {integrity: sha512-ySZTNCpbfbK8rqpKJeJR2S0g/8UqqV3QnzcuWvpI60LWxnFN91nxpSSwCbzfOXkzKfar9j5eOuOplf+klKtINg==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-x64-musl@1.29.3:
     resolution: {integrity: sha512-3pVZhIzW09nzi10usAXfIGTTSTYQ141dk88vGFNCgawIzayiIzZQxEcxVtIkdvlEq2YuFsL9Wcj/h61JHHzuFQ==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-win32-arm64-msvc@1.29.3:
     resolution: {integrity: sha512-VRnkAvtIkeWuoBJeGOTrZxsNp4HogXtcaaLm8agmbYtLDOhQdpgxW6NjZZjDXbvGF+eOehGulXZ3C1TiwHY4QQ==}
@@ -1360,7 +1374,7 @@ packages:
     engines: {node: '>= 0.8'}
 
   once@1.4.0:
-    resolution: {integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=}
+    resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
 
   ordered-binary@1.5.3:
     resolution: {integrity: sha512-oGFr3T+pYdTGJ+YFEILMpS3es+GiIbs9h/XQrclBXUtd44ey7XwfsMzM31f64I1SQOawDoDr/D823kNCADI8TA==}
@@ -1653,7 +1667,7 @@ packages:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
   unpipe@1.0.0:
-    resolution: {integrity: sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=}
+    resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
   update-browserslist-db@1.1.3:
@@ -1670,7 +1684,7 @@ packages:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
 
   vary@1.1.2:
-    resolution: {integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=}
+    resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
   weak-lru-cache@1.2.2:
@@ -1687,7 +1701,7 @@ packages:
     engines: {node: '>=10'}
 
   wrappy@1.0.2:
-    resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=}
+    resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
   y18n@5.0.8:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
@@ -2676,7 +2690,7 @@ snapshots:
     dependencies:
       babel-plugin-macros: 2.8.0
       cosmiconfig: 5.2.1
-      graphql: 17.0.0-alpha.9
+      graphql: 15.3.0
 
   base-x@3.0.11:
     dependencies:
@@ -3021,6 +3035,8 @@ snapshots:
   graphql-relay@0.10.2(graphql@17.0.0-alpha.9):
     dependencies:
       graphql: 17.0.0-alpha.9
+
+  graphql@15.3.0: {}
 
   graphql@17.0.0-alpha.9: {}
 
@@ -3389,7 +3405,7 @@ snapshots:
       invariant: 2.2.4
       nullthrows: 1.1.1
       react: 18.3.1
-      relay-runtime: 18.2.0(patch_hash=xq5bik3qzvjr3clulj3pqoo6km)
+      relay-runtime: 18.2.0(patch_hash=4ca8f3b219d77c40903ba84a6fb337fa2c350c5e27851b15dc4ae919e8d5b5b6)
     transitivePeerDependencies:
       - encoding
 
@@ -3401,7 +3417,7 @@ snapshots:
 
   relay-compiler@18.2.0: {}
 
-  relay-runtime@18.2.0(patch_hash=xq5bik3qzvjr3clulj3pqoo6km):
+  relay-runtime@18.2.0(patch_hash=4ca8f3b219d77c40903ba84a6fb337fa2c350c5e27851b15dc4ae919e8d5b5b6):
     dependencies:
       '@babel/runtime': 7.27.0
       fbjs: 3.0.5
