@@ -3,5 +3,3 @@ allowBuilds:
   "@swc/core": true
   lmdb: true
   msgpackr-extract: true
-patchedDependencies:
-  relay-runtime@18.2.0: patches/relay-runtime@18.2.0.patch

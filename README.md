@@ -27,4 +27,6 @@ pnpm run start
 
 See fetchGraphQL.ts for an example translation layer that converts the latest incremental delivery GraphQL response format to the Facebook internal format that Relay understands.
 
-This requires a small modification to relay-runtime to ignore errors thrown from missing fields in deferred responses (https://github.com/facebook/relay/pull/5083). If a field is included in both a deferred and non-deffered fragment, Relay expects the server to return this field twice. The latest spec algorithm ensures the same field is not executed multiple times.
+This requires setting `deferDeduplicatedFields: true` when creating the Relay Environment to ignore errors thrown from missing fields in deferred responses (https://github.com/facebook/relay/pull/5083). If a field is included in both a deferred and non-deferred fragment, Relay expects the server to return this field twice. The latest spec algorithm ensures the same field is not executed multiple times.
+
+(Please note that `deferDeduplicatedFields` is absent in Relay's TypeScript types, but it still works. See: https://github.com/facebook/relay/pull/5340)

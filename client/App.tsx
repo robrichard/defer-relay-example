@@ -25,6 +25,9 @@ function App() {
 const environment = new Environment({
   network: Network.create(fetchGraphQL),
   store: new Store(RecordSource.create()),
+  // @ts-expect-error Type definition is missing, but exists in actual implementation.
+  // See: https://github.com/facebook/relay/pull/5340
+  deferDeduplicatedFields: true,
 });
 
 createRoot(document.getElementById("app")!).render(

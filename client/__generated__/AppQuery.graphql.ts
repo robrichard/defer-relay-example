@@ -1,7 +1,6 @@
 /**
- * @generated SignedSource<<5d318a6efce29374e24b8ba30747ca43>>
+ * @generated SignedSource<<899ecbdcee9d376aa4c87f9d8cffd1fe>>
  * @lightSyntaxTransform
- * @nogrep
  */
 
 /* tslint:disable */
@@ -52,14 +51,14 @@ v2 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Fragment",
     "metadata": {
       "throwOnFieldError": true
     },
     "name": "AppQuery",
     "selections": [
-      (v1/*: any*/),
+      (v1/*:: as any*/),
       {
         "args": null,
         "kind": "FragmentSpread",
@@ -71,11 +70,11 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": (v0/*:: as any*/),
     "kind": "Operation",
     "name": "AppQuery",
     "selections": [
-      (v1/*: any*/),
+      (v1/*:: as any*/),
       {
         "alias": null,
         "args": null,
@@ -85,7 +84,7 @@ return {
       },
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v2/*:: as any*/),
         "concreteType": "BlogPostConnection",
         "kind": "LinkedField",
         "name": "blogPostsConnection",
@@ -206,7 +205,7 @@ return {
       },
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v2/*:: as any*/),
         "filters": null,
         "handle": "connection",
         "key": "BlogPosts_blogPostsConnection",
