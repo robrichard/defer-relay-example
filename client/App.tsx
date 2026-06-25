@@ -1,14 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { useLazyLoadQuery } from "react-relay";
-import {
-  GraphQLResponse,
-  RecordSource,
-  RequestParameters,
-  Store,
-  Variables,
-  graphql,
-} from "relay-runtime";
-import { AppQuery } from "./__generated__/AppQuery.graphql.js";
+import { RecordSource, Store, graphql } from "relay-runtime";
+import { type AppQuery } from "./__generated__/AppQuery.graphql.js";
 import { RelayEnvironmentProvider } from "react-relay";
 import { Environment, Network } from "relay-runtime";
 import { Suspense } from "react";
@@ -32,6 +25,9 @@ function App() {
 const environment = new Environment({
   network: Network.create(fetchGraphQL),
   store: new Store(RecordSource.create()),
+  // @ts-expect-error Type definition is missing, but exists in actual implementation.
+  // See: https://github.com/facebook/relay/pull/5340
+  deferDeduplicatedFields: true,
 });
 
 createRoot(document.getElementById("app")!).render(

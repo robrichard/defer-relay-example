@@ -1,21 +1,14 @@
 {
-  "grats": {
-    "nullableByDefault": true,
-    "graphqlSchema": "./server/schema.graphql",
-    "tsSchema": "./server/schema.ts",
-    "importModuleSpecifierEnding": ".js",
-    "strictSemanticNullability": true
-  },
   "compilerOptions": {
-    "plugins": [{ "name": "grats-ts-plugin" }],
     "types": ["node"],
     "outDir": "dist",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "target": "esnext",
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "strict": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "skipLibCheck": true
   }
 }

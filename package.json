@@ -6,6 +6,7 @@
   "scripts": {
     "relay": "relay-compiler",
     "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
     "parcel": "parcel ./client/index.html --open",
     "server": "node --watch --loader ts-node/esm server/server.ts",
     "build": "relay-compiler && tsc && parcel build ./client/index.html",
@@ -17,38 +18,30 @@
   "devDependencies": {
     "@babel/core": "^7.12.0",
     "@types/node": "^20.11.0",
-    "@types/react": "^18.2.47",
-    "@types/react-dom": "^18.2.18",
-    "@types/react-relay": "^18.2.0",
-    "@types/relay-runtime": "^18.2.5",
-    "babel-plugin-relay": "^16.1.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-relay": "^18.2.1",
+    "@types/relay-runtime": "^20.1.1",
+    "babel-plugin-relay": "^21.0.1",
     "concurrently": "^8.2.2",
     "parcel": "^2.11.0",
     "prettier": "^3.2.5",
     "process": "^0.11.10",
-    "relay-compiler": "^18.2.0",
+    "relay-compiler": "^21.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "fetch-multipart-graphql": "^3.2.1",
-    "graphql": "^17.0.0-alpha.9",
+    "graphql": "^17.0.1",
     "graphql-relay": "^0.10.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-relay": "^18.2.0",
-    "relay-runtime": "^18.2.0"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-relay": "^21.0.1",
+    "relay-runtime": "^21.0.1"
   },
-  "resolutions": {
-    "graphql": "^17.0.0-alpha.9"
-  },
-  "prettier": {},
-  "pnpm": {
-    "patchedDependencies": {
-      "relay-runtime@18.2.0": "patches/relay-runtime@18.2.0.patch"
-    }
-  }
+  "prettier": {}
 }
